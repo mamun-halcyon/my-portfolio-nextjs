@@ -1,95 +1,78 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { useEffect, useState } from "react";
+import { Header } from "@/components/pages/header/header";
+import { ArrowDown, ArrowUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+// import { About } from "@/components/pages/about/about";
+import WhatIDo from "@/components/pages/what-i-do/what-i-do";
+import Experiences from "@/components/pages/experience/experience";
+import Footer from "@/components/footer/footer";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [atBottom, setAtBottom] = useState(false);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  useEffect(() => {
+    const handleScroll = () => {
+      setAtBottom(window.innerHeight + window.scrollY >= document.body.offsetHeight - 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (position: "top" | "bottom") => {
+    window.scrollTo({
+      top: position === "top" ? 0 : document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="dark:bg-gray-900 pb-20 relative">
+      {/* Header Section */}
+      <Header />    
+      {/* About Section */}
+      {/* <About/> */}
+
+      {/* what i do  */}
+      <WhatIDo/>
+
+      {/* Experience Section */}
+      <Experiences/>
+      {/* Scroll Button */}
+
+
+      {/* footer  */}
+      <Footer />
+      <button
+        onClick={() => scrollTo(atBottom ? "top" : "bottom")}
+        className="fixed bottom-6 right-6 bg-blue-500 text-white p-3 rounded-full shadow-lg transition-all hover:bg-blue-600 flex items-center justify-center"
+      >
+        <AnimatePresence mode="wait">
+          {atBottom ? (
+            <motion.span
+              key="up"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ArrowUp size={24} />
+            </motion.span>
+          ) : (
+            <motion.span
+              key="down"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ArrowDown size={24} />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </button>
     </div>
   );
 }
