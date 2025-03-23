@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/navbar";
-import ThemeProvider from "@/providers/ThemeProviders";
 import localFont from "next/font/local";
-import Preloader from "@/components/preloader";
+import Layout from "@/components/layout";
 
 
 const geistSans = Geist({
@@ -72,13 +70,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${Gotham.variable} antialiased dark:bg-gray-800 transition-colors duration-300 pt-16 font-gotham`}
       >
-        <ThemeProvider>
-          <Preloader />
-          <Navbar />
-          <div className="w-full bg-slate-100 dark:bg-gray-900">
-            {children}
-          </div>
-        </ThemeProvider>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );

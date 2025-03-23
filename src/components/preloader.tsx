@@ -1,23 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Preloader() {
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 2000); // Adjust time as needed
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!isVisible) return null;
-
+export default function Preloader({ isFadingOut }: { isFadingOut: boolean }) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 text-white z-50">
-      {/* Container for animations */}
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: isFadingOut ? 0 : 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed inset-0 flex items-center justify-center bg-gray-900 text-white z-50 pointer-events-none"
+    >
       <motion.div
         initial={{ scale: 1 }}
         animate={{ scale: 3, opacity: 0 }}
@@ -51,6 +42,6 @@ export default function Preloader() {
           {">"}
         </motion.span>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
