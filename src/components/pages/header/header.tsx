@@ -5,7 +5,8 @@ import { Boxes } from "../../ui/background-boxes";
 import Image from "next/image"; // Import Next.js Image component
 import { FloatingDockDemo } from "../../floating-dock/floating-dock";
 import ColourfulText from "../../ui/colourful-text";
-import { Button } from "../../ui/moving-border";
+import MovingBorderButton from "@/components/button/moving-border-button";
+import { FaLocationArrow } from "react-icons/fa6";
 
 export function Header() {
     return (
@@ -40,16 +41,22 @@ export function Header() {
                         specialize in JavaScript, Next.js, and Node.js. Passionate about problem-solving, I excel at building
                         efficient solutions while collaborating effectively in dynamic team environments.
                     </p>
-                    <div className="mt-5 flex justify-evenly w-[80%] mx-auto gap-5">
-                        <button className="w-full px-8 py-2 rounded-full bg-[rgb(0,191,255)] text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-[rgb(0,191,255)]">
+                    <div className="mt-5 flex justify-evenly md:w-[80%] w-full mx-auto gap-5">
+                        <div className="w-[50%]">
+                        <button className="w-full h-[45px] md:px-8 px-4 py-2 rounded-full bg-[rgb(0,191,255)] text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-[rgb(0,191,255)]">
                             Hire Me
                         </button>
-                        <Button
-                            borderRadius="1.75rem"
-                            className="w-full px-8 py-2  bg-slate-900  text-white  border-slate-800"
-                        >
-                            View Projects
-                        </Button>
+                        </div>
+                        <div className="w-[50%]">
+                        
+                            <MovingBorderButton
+                                title="Show my work"
+                                icon={<FaLocationArrow />}
+                                position="right"
+                            />
+                        
+                        </div>
+
                     </div>
                     <FloatingDockDemo />
                 </div>
