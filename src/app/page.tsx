@@ -1,51 +1,63 @@
 "use client";
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { Header } from "@/components/pages/header/header";
-import { ArrowDown, ArrowUp } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+// import { ArrowDown, ArrowUp } from "lucide-react";
+// import { motion, AnimatePresence } from "framer-motion";
 // import { About } from "@/components/pages/about/about";
 import WhatIDo from "@/components/pages/what-i-do/what-i-do";
-import Experiences from "@/components/pages/experience/experience";
 import Footer from "@/components/footer/footer";
+import ShortExperience from "@/components/pages/short-experience/short-experience";
+import Skills from "@/components/pages/skills/skills";
+import ProjectSection from "@/components/pages/projects/projects";
+import ContactSection from "@/components/pages/contact/contact";
 
 export default function Home() {
-  const [atBottom, setAtBottom] = useState(false);
+  // const [atBottom, setAtBottom] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setAtBottom(window.innerHeight + window.scrollY >= document.body.offsetHeight - 10);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setAtBottom(window.innerHeight + window.scrollY >= document.body.offsetHeight - 10);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
-  const scrollTo = (position: "top" | "bottom") => {
-    window.scrollTo({
-      top: position === "top" ? 0 : document.body.scrollHeight,
-      behavior: "smooth",
-    });
-  };
+  // const scrollTo = (position: "top" | "bottom") => {
+  //   window.scrollTo({
+  //     top: position === "top" ? 0 : document.body.scrollHeight,
+  //     behavior: "smooth",
+  //   });
+  // };
 
   return (
     <div className="dark:bg-gray-900 pb-20 relative">
       {/* Header Section */}
-      <Header />    
+      <Header />
       {/* About Section */}
       {/* <About/> */}
 
       {/* what i do  */}
-      <WhatIDo/>
+      <WhatIDo />
 
       {/* Experience Section */}
-      <Experiences/>
+      <ShortExperience />
       {/* Scroll Button */}
 
+      {/* Skills Section */}
+      <Skills />
+
+      {/* projects section  */}
+      <ProjectSection />
+
+
+      {/* get in touch section  */}
+      <ContactSection />
 
       {/* footer  */}
       <Footer />
-      <button
+      {/* <button
         onClick={() => scrollTo(atBottom ? "top" : "bottom")}
         className="fixed bottom-6 right-6 bg-blue-500 text-white p-3 rounded-full shadow-lg transition-all hover:bg-blue-600 flex items-center justify-center"
       >
@@ -72,7 +84,7 @@ export default function Home() {
             </motion.span>
           )}
         </AnimatePresence>
-      </button>
+      </button> */}
     </div>
   );
 }

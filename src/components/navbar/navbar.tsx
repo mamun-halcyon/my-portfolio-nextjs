@@ -8,6 +8,7 @@ import AnimatedButton from "../button/AnimatedButton";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
+    const navItems = ["About", "Projects", "Skills", "Experience", "Contact"];
     const { theme, toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -48,7 +49,7 @@ const Navbar = () => {
     return (
         <nav
             ref={navRef} // Attach ref to navbar
-            className={`fixed top-0 w-full z-50 shadow-md transition-all duration-300 font-mono
+            className={`fixed top-0 w-full z-50 shadow-md transition-all duration-300 font-gotham
       ${isScrolled ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-md" : "bg-white dark:bg-gray-900"}
       `}
         >
@@ -61,14 +62,25 @@ const Navbar = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex space-x-6">
-                        {["About", "Projects", "Contact"].map((item) => (
+                        <Link
+                            href={`/`}
+                            className="relative group text-gray-900 dark:text-gray-300 hover:text-blue-500 transition-colors duration-300"
+                        >
+                            Home
+                            <span
+                                className="absolute left-0 bottom-0 h-[2px] w-full bg-blue-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"
+                            />
+                        </Link>
+                        {navItems.map((item) => (
                             <Link
                                 key={item}
-                                href={`#${item.toLowerCase()}`}
-                                className="relative text-gray-900 dark:text-gray-300 hover:text-blue-500 transition-all duration-300"
+                                href={`${item.toLowerCase()}`}
+                                className="relative group text-gray-900 dark:text-gray-300 hover:text-blue-500 transition-colors duration-300"
                             >
                                 {item}
-                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-500 scale-x-0 hover:scale-x-100 transition-transform duration-300"></span>
+                                <span
+                                    className="absolute left-0 bottom-0 h-[2px] w-full bg-blue-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"
+                                />
                             </Link>
                         ))}
                     </div>
@@ -87,7 +99,9 @@ const Navbar = () => {
                             )}
                         </button>
                         <div className="hidden md:flex">
-                            <AnimatedButton text="Download CV" onClick={() => alert("Hello World")} />
+                            <Link href={`https://drive.google.com/file/d/1MoJ-XuMi84n08jBOpDk32Mxb0EIl1Y9O/view?usp=sharing`} target="_blank">
+                                <AnimatedButton text="Download CV" />
+                            </Link>
                         </div>
                         {/* Mobile Menu Toggle */}
                         <button
@@ -111,10 +125,17 @@ const Navbar = () => {
                         className="md:hidden bg-white dark:bg-gray-900 backdrop-blur-md absolute w-full left-0 overflow-hidden"
                     >
                         <div className="px-2 pt-2 pb-3 space-y-2">
-                            {["About", "Projects", "Contact"].map((item) => (
+                            <Link
+                                href={`/`}
+                                className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Home
+                            </Link>
+                            {navItems.map((item) => (
                                 <Link
                                     key={item}
-                                    href={`#${item.toLowerCase()}`}
+                                    href={`${item.toLowerCase()}`}
                                     className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
                                     onClick={() => setIsOpen(false)}
                                 >
@@ -122,10 +143,10 @@ const Navbar = () => {
                                 </Link>
                             ))}
                         </div>
-                        <div className="block md:hidden mx-5">
-                        <Link href={`https://drive.google.com/file/d/1MoJ-XuMi84n08jBOpDk32Mxb0EIl1Y9O/view?usp=sharing`} target="_blank">                        
-                            <AnimatedButton text="Download CV" />
-                        </Link>
+                        <div className="block md:hidden mx-5 pb-4">
+                            <Link href={`https://drive.google.com/file/d/1MoJ-XuMi84n08jBOpDk32Mxb0EIl1Y9O/view?usp=sharing`} target="_blank">
+                                <AnimatedButton text="Download CV" />
+                            </Link>
                         </div>
                     </motion.div>
                 )}

@@ -23,8 +23,8 @@ const experiences = [
                     "Built engaging Add to Cart, Wishlist, and Checkout features for a seamless shopping experience.",
                     "Designed dynamic User and Admin Dashboards for efficient management.",
                     "Optimized e-commerce workflows for performance and user satisfaction.",
-                    "Utilized: NextJs, TypeScript, NodeJs, ExpressJS, MySQL, Tailwind CSS, SCSS, etc.",
                 ],
+                tech: ["Next.js", "TypeScript", "NodeJs", "ExpressJs", "MySQL", "TailwindCSS", "SCSS"],
             },
         ],
     },
@@ -42,8 +42,8 @@ const experiences = [
                 details: [
                     "Designed and managed functionalities of Add To Cart, Wishlist.",
                     "Implemented order processing, checkout, and user dashboard management.",
-                    "Utilized: NextJs, Django REST Framework, Tailwind CSS, SwiperJs, etc.",
                 ],
+                tech: ["Next.js", "JavaScript", "Django", "Django REST Framework", "MySQL", "TailwindCSS", "SwiperJs"],
             },
         ],
     },
@@ -119,6 +119,17 @@ export default function Experiences() {
                                                     <li key={j}>{point}</li>
                                                 ))}
                                             </ul>
+                                            <div className="flex flex-wrap gap-2 mt-3">
+                                                <span className="text-sm font-semibold text-gray-600 dark:text-gray-400">Tech Stack:</span>
+                                                {project.tech.map((tech, j) => (
+                                                    <span
+                                                        key={j}
+                                                        className="text-xs px-2 py-1 bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-100 rounded-full"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

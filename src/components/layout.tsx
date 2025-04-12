@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Preloader from "@/components/preloader";
 import Navbar from "@/components/navbar/navbar";
 import ThemeProvider from "@/providers/ThemeProviders";
+import ScrollToggleButton from "./scroll-button/ScrollToggleButton";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,6 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <ThemeProvider>
         <Navbar />
         <div className="w-full bg-slate-100 dark:bg-gray-900">{children}</div>
+        <ScrollToggleButton/>
       </ThemeProvider>
 
       {/* Preloader with fade-out effect */}

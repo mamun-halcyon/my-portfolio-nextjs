@@ -7,6 +7,7 @@ import { FloatingDockDemo } from "../../floating-dock/floating-dock";
 import ColourfulText from "../../ui/colourful-text";
 import MovingBorderButton from "@/components/button/moving-border-button";
 import { FaLocationArrow } from "react-icons/fa6";
+import Link from "next/link";
 
 export function Header() {
     return (
@@ -43,18 +44,21 @@ export function Header() {
                     </p>
                     <div className="mt-5 flex justify-evenly md:w-[80%] w-full mx-auto gap-5">
                         <div className="w-[50%]">
-                        <button className="w-full h-[45px] md:px-8 px-4 py-2 rounded-full bg-[rgb(0,191,255)] text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-[rgb(0,191,255)]">
-                            Hire Me
-                        </button>
+                            <Link href={"/contact"} target="_blank" className="w-full">
+                                <button className="w-full h-[45px] md:px-8 px-4 py-2 rounded-full bg-[rgb(0,191,255)] text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-[rgb(0,191,255)]">
+                                    Hire Me
+                                </button>
+                            </Link>
                         </div>
                         <div className="w-[50%]">
-                        
+                            <Link href={"/projects"} className="w-full">                            
                             <MovingBorderButton
                                 title="Show my work"
                                 icon={<FaLocationArrow />}
                                 position="right"
                             />
-                        
+                            </Link>
+
                         </div>
 
                     </div>
